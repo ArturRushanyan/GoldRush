@@ -17,6 +17,19 @@ const Registration = (req, res, next) => {
   next();
 };
 
+const Login = (req, res, next) => {
+  const schema = Schema.Login;
+  const result = schema.validate(req.body);
+  if (result.error) {
+    throw { status: 422, message: constMessages.VALIDATION_ERROR };
+  }
+
+  req.body.email = result.value.email;
+  req.body.password = result.value.password;
+  next();
+};
+
 module.exports = {
   Registration,
+  Login,
 };

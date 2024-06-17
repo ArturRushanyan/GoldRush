@@ -35,6 +35,35 @@ const SignUp = async (req, res, next) => {
   }
 };
 
+const Login = async (req, res, next) => {
+  const { email, password } = req.body;
+  try {
+    // const user = await userService.findUserByEmail(email);
+    const user = await userModule.findUserByEmail(email);
+
+    if (!user) {
+      throw { status: 404, message: constMessages.NOT_EXISTS("user") };
+    }
+
+    const isMatch = await hash.comparePassword(password, user.password);
+
+    if (!isMatch) {
+      throw { status: 403, message: constMessages.INCORRECT_PASSWORD };
+    }
+
+    const authToken = await jwtUtils.generateAuthToken(user._id);
+
+    return res.status(200).json({
+      success: true,
+      access_token: authToken,
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   SignUp,
+  Login,
 };
