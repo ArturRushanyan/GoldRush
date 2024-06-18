@@ -6,6 +6,9 @@ module.exports = {
   SOMETHING_WENT_WRONG: "Something went wrong",
   MISSING_USER_ID: "Missing user's id",
   INCORRECT_PASSWORD: "Wrong user name or password",
+  CANNOT_FIND_USER: "Can not find user",
+  NO_ACTIVE_EVENTS: "No active events",
+  MISSING_TOKEN: "Missing Auth token",
   ALREADY_EXISTS: (resource) => `${resource} already exists`,
   NOT_EXISTS: (resource) => `${resource} doesn't exist!`,
 };

@@ -17,6 +17,26 @@ const generateAuthToken = (userId) => {
   });
 };
 
+const getAccessToken = (requestHeaders) => {
+  const { authorization } = requestHeaders;
+  if (!authorization) {
+    return null;
+  }
+
+  // remove Bearer from token
+  return authorization.startsWith("Bearer ")
+    ? authorization.slice(7, authorization.length)
+    : authorization;
+};
+
+const verifyToken = (token) => {
+  return new Promise((resolve) => {
+    resolve(JWT.verify(token, config.JWT_SECRET_KEY));
+  });
+};
+
 module.exports = {
   generateAuthToken,
+  getAccessToken,
+  verifyToken,
 };

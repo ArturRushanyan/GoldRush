@@ -9,7 +9,12 @@ const saveUser = async (newUserData) => {
   return user.save();
 };
 
+const getUserById = (id) => {
+  return userModel.findById(id);
+};
+
 module.exports = {
   findUserByEmail,
   saveUser,
+  getUserById,
 };
