@@ -12,6 +12,9 @@ const ROLE_LIMITS = {
   fish: parseInt(process.env.ROLE_LIMITS_FISH) || 150,
 };
 
+const EVENTS_CONFIG_FILE_NAME =
+  process.env.EVENTS_CONFIG_FILE_NAME || "eventsConfig.json";
+
 const config = {
   port: PORT,
   JWT_SECRET_KEY,
@@ -22,6 +25,7 @@ const config = {
   EVENT_STATE_ENUM: ["upcoming", "running", "ended"],
   MAX_USERS_PER_BUCKET,
   ROLE_LIMITS,
+  EVENTS_CONFIG_FILE_NAME,
 };
 
 module.exports = config;

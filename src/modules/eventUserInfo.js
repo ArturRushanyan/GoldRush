@@ -1,4 +1,4 @@
-const eventUserInfoModelService = require("../dbServices/EventUserInfo");
+const eventUserInfoModelService = require("../dbServices/eventUserInfo");
 
 const findRewardByUserIdAndEventId = async (eventId, userId) => {
   return eventUserInfoModelService.findRewardByUserIdAndEventId(

@@ -14,6 +14,7 @@ module.exports = {
   EVENT_IS_ACTIVE_CANNOT_CLAIM:
     "Event is currently active and you are unable to make a claim",
   CLAIM_ALREADY_DONE: "Claim has already been processed",
+  NO_VALID_EVENTS_TO_SCHEDULE: "There are no valid events to schedule.",
   ALREADY_EXISTS: (resource) => `${resource} already exists`,
   NOT_EXISTS: (resource) => `${resource} doesn't exist!`,
 };

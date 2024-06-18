@@ -4,6 +4,7 @@ const logger = require("morgan");
 
 const config = require("./config");
 const errorHandler = require("./errorHandler/errorHandler");
+const configParser = require("./utils/configParser");
 const routes = require("../src/routes/index");
 
 const startServer = async (app) => {
@@ -13,6 +14,8 @@ const startServer = async (app) => {
     app.use(bodyParser.json());
 
     await mongoose.connect(config.DB.url);
+
+    await configParser();
 
     routes(app);
 
