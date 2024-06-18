@@ -9,6 +9,11 @@ module.exports = {
   CANNOT_FIND_USER: "Can not find user",
   NO_ACTIVE_EVENTS: "No active events",
   MISSING_TOKEN: "Missing Auth token",
+  EVENT_NOT_FOUND: "Event not found",
+  NOT_PARTICIPATED_TO_EVENT: "Not participated to event",
+  EVENT_IS_ACTIVE_CANNOT_CLAIM:
+    "Event is currently active and you are unable to make a claim",
+  CLAIM_ALREADY_DONE: "Claim has already been processed",
   ALREADY_EXISTS: (resource) => `${resource} already exists`,
   NOT_EXISTS: (resource) => `${resource} doesn't exist!`,
 };

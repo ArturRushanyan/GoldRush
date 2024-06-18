@@ -29,7 +29,43 @@ const Login = (req, res, next) => {
   next();
 };
 
+const ScoreReporting = (req, res, next) => {
+  const schema = Schema.ScoreReporting;
+  const result = schema.validate(req.body);
+
+  if (result.error) {
+    throw { status: 422, message: constMessages.VALIDATION_ERROR };
+  }
+
+  next();
+};
+
+const LeaderBoard = (req, res, next) => {
+  const schema = Schema.LeaderBoard;
+  const result = schema.validate(req.body);
+
+  if (result.error) {
+    throw { status: 422, message: constMessages.VALIDATION_ERROR };
+  }
+
+  next();
+};
+
+const Claim = (req, res, next) => {
+  const schema = Schema.Claim;
+  const result = schema.validate(req.body);
+
+  if (result.error) {
+    throw { status: 422, message: constMessages.VALIDATION_ERROR };
+  }
+
+  next();
+};
+
 module.exports = {
   Registration,
   Login,
+  ScoreReporting,
+  LeaderBoard,
+  Claim,
 };

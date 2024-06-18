@@ -14,4 +14,14 @@ module.exports = {
     email: Joi.string().required().min(5).max(40).trim(),
     password: Joi.string().required().min(6).max(20).trim(),
   }),
+  ScoreReporting: Joi.object().keys({
+    eventId: Joi.string().required(),
+    goldCount: Joi.number().required(),
+  }),
+  LeaderBoard: Joi.object().keys({
+    eventId: Joi.string().required(),
+  }),
+  Claim: Joi.object().keys({
+    eventId: Joi.string().required(),
+  }),
 };
