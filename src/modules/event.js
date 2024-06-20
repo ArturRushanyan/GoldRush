@@ -19,8 +19,8 @@ const isEventActive = async (eventId) => {
   return true;
 };
 
-const getFirstValidEvent = async () => {
-  return eventModelService.getFirstValidEvent();
+const getRunningEventAndUpdateState = async () => {
+  return eventModelService.getRunningEventAndUpdateState();
 };
 
 const injectEventsToDB = async (eventsList) => {
@@ -31,15 +31,15 @@ const updateEventStateById = async (eventId, status) => {
   return eventModelService.updateEventStateById(eventId, status);
 };
 
-const getRunningEvent = async () => {
-  return eventModelService.getRunningEvent();
+const getUpcomingEventAndUpdateState = async () => {
+  return eventModelService.getUpcomingEventAndUpdateState();
 };
 
 module.exports = {
   getCurrentActiveEvent,
   isEventActive,
-  getFirstValidEvent,
   injectEventsToDB,
   updateEventStateById,
-  getRunningEvent,
+  getRunningEventAndUpdateState,
+  getUpcomingEventAndUpdateState,
 };

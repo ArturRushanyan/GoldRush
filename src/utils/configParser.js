@@ -7,7 +7,7 @@ const scheduler = require("./scheduler");
 
 const parseDate = (dateString) => {
   const [datePart, timePart] = dateString.split(" ");
-  const [day, month, year] = datePart.split("-").map(Number);
+  const [day, month, year] = datePart.split("/").map(Number);
   const [hours, minutes] = timePart.split(":").map(Number);
   return new Date(year, month - 1, day, hours, minutes);
 };
@@ -30,7 +30,9 @@ const configParser = async () => {
     JSON.parse(eventsConfigData)
   );
 
-  await eventsModule.injectEventsToDB(sortedEvents);
+  if (sortedEvents.length > 0) {
+    await eventsModule.injectEventsToDB(sortedEvents);
+  }
 
   await scheduler.configureScheduler();
 };

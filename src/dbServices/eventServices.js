@@ -10,11 +10,18 @@ const getEventById = async (eventId) => {
   return eventModel.findOne({ _id: eventId });
 };
 
-const getFirstValidEvent = async () => {
-  return eventModel.findOne({
-    state: config.EVENT_STATE_ENUM[0],
-    startDate: { $gt: moment().format("DD-MM-YYYY HH:mm") },
-  });
+const getRunningEventAndUpdateState = async () => {
+  const now = moment().format("DD/MM/YYYY HH:mm:ss");
+  return eventModel.findOneAndUpdate(
+    {
+      startDate: { $lte: now },
+      endDate: { $gte: now },
+    },
+    {
+      state: config.EVENT_STATE_ENUM[1],
+    },
+    { new: true }
+  );
 };
 
 const injectEvents = async (eventsList) => {
@@ -30,17 +37,18 @@ const updateEventStateById = async (eventId, status) => {
   );
 };
 
-const getRunningEvent = async () => {
+const getUpcomingEventAndUpdateState = async () => {
+  const now = moment().format("DD/MM/YYYY HH:mm:ss");
   return eventModel.findOne({
-    state: config.EVENT_STATE_ENUM[1],
+    startDate: { $gt: now },
   });
 };
 
 module.exports = {
   getCurrentActiveEvent,
   getEventById,
-  getFirstValidEvent,
   injectEvents,
   updateEventStateById,
-  getRunningEvent,
+  getRunningEventAndUpdateState,
+  getUpcomingEventAndUpdateState,
 };
